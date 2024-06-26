@@ -18,3 +18,6 @@ modalShow.addEventListener("click", showModal);
 modalClose.addEventListener("click", () =>
   modal.classList.remove("show-modal"),
 );
+window.addEventListener("click", (event) =>
+  event.target === modal ? modal.classList.remove("show-modal") : false,
+);
