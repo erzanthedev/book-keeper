@@ -1,7 +1,7 @@
 // DOM Variables for manipulation
 const modal = document.getElementById("modal");
 const modalShow = document.getElementById("show-modal");
-const modalClose = document.getElementById("close-icon");
+const modalClose = document.getElementById("close-modal");
 const bookmarkForm = document.getElementById("bookmark-form");
 const websiteNameEl = document.getElementById("website-name");
 const websiteUrlEl = document.getElementById("website-url");
@@ -15,3 +15,6 @@ function showModal() {
 
 // Event Listener
 modalShow.addEventListener("click", showModal);
+modalClose.addEventListener("click", () =>
+  modal.classList.remove("show-modal"),
+);
