@@ -42,6 +42,24 @@ function validate(nameValue, urlValue) {
   return true;
 }
 
+// Fetch Bookmarks
+function fetchBookmarks() {
+  // Get bookmarks from localstorage if available
+  if (localStorage.getItem("bookmarks")) {
+    bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+  } else {
+    // create bookmarks array in localStorage, used as example for user
+    bookmarks = [
+      {
+        name: "Jacinto Designs",
+        url: "https://jacinto.design",
+      },
+    ];
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  }
+  console.log(bookmarks);
+}
+
 // Handle data from form
 function storeBookmark(event) {
   event.preventDefault();
@@ -61,10 +79,14 @@ function storeBookmark(event) {
   };
 
   bookmarks.push(bookmark);
-  console.log(bookmarks);
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  fetchBookmarks();
   bookmarkForm.reset();
   websiteNameEl.focus();
 }
 
 // Event Listener
 bookmarkForm.addEventListener("submit", storeBookmark);
+
+// On Load, fetch bookmarks
+fetchBookmarks();
