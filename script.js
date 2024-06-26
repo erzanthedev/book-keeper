@@ -13,7 +13,7 @@ function showModal() {
   websiteNameEl.focus();
 }
 
-// Event Listener
+// Modal Event Listener
 modalShow.addEventListener("click", showModal);
 modalClose.addEventListener("click", () =>
   modal.classList.remove("show-modal"),
@@ -21,3 +21,17 @@ modalClose.addEventListener("click", () =>
 window.addEventListener("click", (event) =>
   event.target === modal ? modal.classList.remove("show-modal") : false,
 );
+
+// Handle data from form
+function storeBookmark(event) {
+  event.preventDefault();
+  const nameValue = websiteNameEl.value;
+  let urlValue = websiteUrlEl.value;
+  if (!urlValue.includes("http://", "https://")) {
+    urlValue = `https://${urlValue}`;
+  }
+  console.log(nameValue, urlValue);
+}
+
+// Event Listener
+bookmarkForm.addEventListener("submit", storeBookmark);
